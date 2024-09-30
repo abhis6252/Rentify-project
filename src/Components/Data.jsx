@@ -64,16 +64,6 @@ export const items = [
     price: "29999",
   },
   {
-    id: 9,
-    category: "tablets",
-    title: "Samsung Galaxy Tab A8",
-    imgSrc: "https://m.media-amazon.com/images/I/51b9LjzmPCL._SL1080_.jpg",
-    amazonLink: "https://amzn.to/3Pdsh4F",
-    description:
-      "Samsung Galaxy Tab A8 26.69cm (10.5 inch) Display, RAM 4 GB, ROM 64 GB Expandable, Wi-Fi Tablet, Gray, (SM-X200NZAEINU)",
-    price: "49999",
-  },
-  {
     id: 8,
     category: "laptops",
     title: "Apple MacBook Air Laptop",
@@ -83,4 +73,15 @@ export const items = [
       "Apple MacBook Air Laptop M1 chip, 13.3-inch/33.74 cm Retina Display, ",
     price: "89999",
   },
+  {
+    id: 9,
+    category: "tablets",
+    title: "Samsung Galaxy Tab A8",
+    imgSrc: "https://m.media-amazon.com/images/I/51b9LjzmPCL._SL1080_.jpg",
+    amazonLink: "https://amzn.to/3Pdsh4F",
+    description:
+      "Samsung Galaxy Tab A8 26.69cm (10.5 inch) Display, RAM 4 GB, ROM 64 GB Expandable, Wi-Fi Tablet, Gray, (SM-X200NZAEINU)",
+    price: "49999",
+  },
 ];
+

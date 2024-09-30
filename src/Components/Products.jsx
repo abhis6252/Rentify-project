@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Footer/Footer";
 
 const Products = ({ items, cart, setCart }) => {
   const addToCart = (id, price, title, description, imgSrc) => {
@@ -91,6 +92,7 @@ const Products = ({ items, cart, setCart }) => {
           })}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

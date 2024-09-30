@@ -9,6 +9,7 @@ const ImageSlider = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
   };
 
   const images = [
@@ -16,7 +17,6 @@ const ImageSlider = () => {
     "../src/assets/images/slider02.jpg",
     "../src/assets/images/sloder03.jpg",
   ];
-
   return (
     <div className="slider-container">
       <Slider {...settings}>

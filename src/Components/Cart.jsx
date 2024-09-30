@@ -14,7 +14,14 @@ const Cart = ({ cart, setCart }) => {
             <div className="text-center">
               <h1>your card is empty</h1>
               <Link to={"/"} className="btn-warning">
-                <button type="button" class="btn btn-warning">
+                <button
+                  style={{
+                    backgroundColor: "rgb(104, 126, 171) ",
+                    border: "none",
+                  }}
+                  type="button"
+                  class="btn btn-warning"
+                >
                   continue shopping ?
                 </button>
               </Link>

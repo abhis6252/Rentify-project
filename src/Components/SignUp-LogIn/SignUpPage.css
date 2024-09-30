@@ -14,7 +14,7 @@
   margin-bottom: 20px;
   font-family: 'Arial', sans-serif;
   font-size: 28px;
-  color: #333;
+  color: #151313;
 }
 
 .auth-container form {
@@ -33,12 +33,12 @@
 }
 
 .auth-container input:focus {
-  border-color: #f0a400; /* Brand yellow */
+  border-color: #131211; /* Brand yellow */
 }
 
 .auth-container button {
   padding: 10px;
-  background-color: #f0a400;
+  background-color: #1a1917;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -48,7 +48,7 @@
 }
 
 .auth-container button:hover {
-  background-color: #e08e00;
+  background-color: #1b1a19;
 }
 
 .auth-container p {
@@ -58,12 +58,12 @@
 }
 
 .auth-container a {
-  color: #f0a400;
+  color: #141312;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
 
 .auth-container a:hover {
-  color: #e08e00;
+  color: #1c1b1a;
 }

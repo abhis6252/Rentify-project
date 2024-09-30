@@ -15,7 +15,7 @@ function SignUpPage() {
 
   return (
     <div className="auth-container">
-      <h2>Signup</h2>
+      <h2>SIGN UP</h2>
       <form onSubmit={handleSignup}>
         <input
           type="text"
@@ -39,10 +39,15 @@ function SignUpPage() {
           required
         />
 
-        <button type="submit">Signup</button>
+        <button style={{ backgroundColor: "rgb(104, 126, 171)" }} type="submit">
+          SIGN UP
+        </button>
       </form>
       <p>
-        Already Have An Account ? <Link to="/login">Login</Link>
+        Already Have An Account ?{" "}
+        <Link style={{ color: "#505052" }} to="/login">
+          Login
+        </Link>
       </p>
     </div>
   );

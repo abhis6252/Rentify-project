@@ -11,6 +11,7 @@ import SignUpPage from "./Components/SignUp-LogIn/SignUpPage";
 import HomePage from "./Components/HomePage/HomePage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from "./Components/Footer/Footer";
 
 const App = () => {
   const [data, setData] = useState([...items]);
@@ -21,15 +22,15 @@ const App = () => {
         <Navbar cart={cart} setData={setData} />
 
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
 
-          <Route path="/" element={<HomePage />} />
-
           <Route
-            path="/"
+            path="/product"
             element={<Products cart={cart} setCart={setCart} items={data} />}
           />
+
           <Route
             path="/product/:id"
             element={<ProductDetail cart={cart} setCart={setCart} />}

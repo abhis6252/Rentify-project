@@ -14,7 +14,7 @@ function LogInPage() {
 
   return (
     <div className="auth-container">
-      <h2>Login</h2>
+      <h2>LOGIN</h2>
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -30,10 +30,15 @@ function LogInPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button style={{ backgroundColor: "rgb(104, 126, 171)" }} type="submit">
+          Login
+        </button>
       </form>
       <p>
-        New User? <Link to="/signup">Signup</Link>
+        New User?{" "}
+        <Link style={{ color: "#505052" }} to="/signup">
+          Signup
+        </Link>
       </p>
     </div>
   );
