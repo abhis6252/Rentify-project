@@ -84,4 +84,3 @@ export const items = [
     price: "49999",
   },
 ];
-

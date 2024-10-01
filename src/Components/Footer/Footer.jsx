@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Link import karo
 import "./Footer.css";
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -16,16 +18,16 @@ const Footer = () => {
           <h4>Quick Links</h4>
           <ul>
             <li>
-              <a href="/about">About Us</a>
+              <Link to="/about">About Us</Link> {/* Use Link instead of a */}
             </li>
             <li>
-              <a href="/faq">FAQs</a>
+              <Link to="/faq">FAQs</Link>
             </li>
             <li>
-              <a href="/contact">Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
             <li>
-              <a href="/terms">Terms & Conditions</a>
+              <Link to="/terms">Terms & Conditions</Link>
             </li>
           </ul>
         </div>

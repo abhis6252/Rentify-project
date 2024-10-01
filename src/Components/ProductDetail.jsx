@@ -63,6 +63,11 @@ const ProductDetail = ({ cart, setCart }) => {
         <div className="text-center">
           <h1 className="card-title">{product.title}</h1>
           <p className="card-text">{product.description}</p>
+          {/* <ul>
+            <li>
+              <p className="card-text">{product.heighlight}</p>
+            </li>
+          </ul> */}
           <button className="btn btn-primary mx-3">{product.price} ₹</button>
           <button
             onClick={() =>

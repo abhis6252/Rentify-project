@@ -1,6 +1,6 @@
 .slider-container {
   margin: 20px 0;
-  background:#ffffff
+  background:#ffffff;
 }
 
 .slider-image {
@@ -10,6 +10,6 @@
   margin: 1px 90px;
   width: 90%;
   height: 70%; 
-
   border-radius: 8px;
 }
+

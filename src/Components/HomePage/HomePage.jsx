@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HomePage.css";
 import ImageSlider from "../slider/ImageSlider";
 import Footer from "../Footer/Footer";
-// import Products from "../Products";
+import CarouselComponent from "../homeslider";
 
+// import
 const HomePage = () => {
+  const [explore, setExplore] = useState(false);
+
+  const handleExplore = () => {
+    setExplore(!explore);
+  };
   return (
     <>
       <div className="homepage">
@@ -12,26 +18,37 @@ const HomePage = () => {
 
         <header className="homepage-header">
           <h1>Welcome to Rentify</h1>
-          <p>Your one-stop shop for all rental needs</p>
-          <button className="explore-btn">Explore Now</button>
+          <p>Your go-to platform for renting stylish and trendy clothes</p>
+          <button className="explore-btn" onClick={handleExplore}>
+            Explore Our Collection
+          </button>
+
+          <div className="" style={{ display: explore ? "block" : "none" }}>
+            <CarouselComponent />
+          </div>
+          <div></div>
         </header>
-        <section className="features">
+
+        {/* <section className="features">
           <div className="feature">
-            <h2>Wide Range of Products</h2>
-            <p>From electronics to furniture, we have it all!</p>
+            <h2>Trendy Fashion</h2>
+            <p>Discover the latest styles and trends for every occasion!</p>
           </div>
           <div className="feature">
-            <h2>Easy Checkout</h2>
-            <p>Fast and secure payment options.</p>
+            <h2>Affordable Rentals</h2>
+            <p>Rent high-quality clothing without breaking the bank.</p>
           </div>
           <div className="feature">
-            <h2>Customer Support</h2>
-            <p>We're here to help you 24/7.</p>
+            <h2>Sustainable Choices</h2>
+            <p>Make eco-friendly fashion choices with our shared wardrobe.</p>
           </div>
-        </section>
+        </section> */}
       </div>
-      {/* <Products /> */}
       <br />
+      <br />
+      <br />
+      <br />
+
       <Footer />
     </>
   );

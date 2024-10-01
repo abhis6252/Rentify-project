@@ -1,0 +1,120 @@
+.about-container {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.about-banner {
+  background-image: url('about-bg-img.jpg');
+  background-size:contain;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  filter: brightness(85%); /* imgage ko dark ya light krne k liye */
+}
+
+.about-banner h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.about-banner p {
+  font-size: 24px;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.about-section {
+  margin-bottom: 40px;
+}
+
+.about-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: rgb(104, 126, 171); /* Rentify yellow color */
+}
+
+.about-section p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.about-list {
+  list-style-type: disc;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.about-team {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.team-member {
+  text-align: center;
+  max-width: 200px;
+}
+
+.team-member img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.team-member h4 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.team-member p {
+  font-size: 16px;
+  color: #666;
+}
+
+.about-contact {
+  text-align: center;
+  padding: 50px 20px;
+  overflow: hidden;
+}
+
+.about-contact h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about-contact p {
+  font-size: 18px;
+}
+
+.about-contact a {
+  color: rgb(104, 126, 171);
+  text-decoration: none;
+}
+
+.about-contact a:hover {
+  /* text-decoration: underline; */
+}
+#aboutContactLink:hover{
+  transform: scale(1.2) !important;
+  color: red !important;
+  width: 100%;
+  cursor: pointer;
+}
+

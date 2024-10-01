@@ -1,0 +1,13 @@
+.nav-links li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-links li a:hover {
+  color: #f0a400; /* Yellow color */
+}
