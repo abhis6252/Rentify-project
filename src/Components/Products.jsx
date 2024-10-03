@@ -43,7 +43,7 @@ const Products = ({ items, cart, setCart, wishlist, setWishlist }) => {
         progress: undefined,
         theme: "light",
       });
-      return; // Prevent adding duplicate items
+      return; // Prevent krega duplicate items add krne se
     }
 
     // Update wishlist

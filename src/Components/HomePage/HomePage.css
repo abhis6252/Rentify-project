@@ -88,6 +88,7 @@
   
   margin-top: 20px;
   width: 60%;
+  margin-bottom: 20px;
 }
 .search-bar input{
   width: 50%;
@@ -95,6 +96,7 @@
   border: none;
   margin-top: 6px;
   outline: none;
+  height: 40px;
  
 }
 input::placeholder{

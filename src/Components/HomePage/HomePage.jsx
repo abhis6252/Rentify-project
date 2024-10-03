@@ -28,21 +28,6 @@ const HomePage = () => {
           </div>
           <div></div>
         </header>
-
-        {/* <section className="features">
-          <div className="feature">
-            <h2>Trendy Fashion</h2>
-            <p>Discover the latest styles and trends for every occasion!</p>
-          </div>
-          <div className="feature">
-            <h2>Affordable Rentals</h2>
-            <p>Rent high-quality clothing without breaking the bank.</p>
-          </div>
-          <div className="feature">
-            <h2>Sustainable Choices</h2>
-            <p>Make eco-friendly fashion choices with our shared wardrobe.</p>
-          </div>
-        </section> */}
       </div>
       <br />
       <br />
