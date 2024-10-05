@@ -9,7 +9,7 @@ const ProductDetail = ({ cart, setCart }) => {
   const { id } = useParams();
   const [product, setproduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-
+  // console.log("produc>>>>>", product);
   useEffect(() => {
     const filterProducts = items.filter((product) => product.id == id);
     setproduct(filterProducts[0]);

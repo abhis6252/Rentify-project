@@ -19,6 +19,7 @@ import TermsConditions from "./Components/TermsConditions/TermsConditions";
 
 const App = () => {
   const [data, setData] = useState([...items]);
+
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]); // State for wishlist
 

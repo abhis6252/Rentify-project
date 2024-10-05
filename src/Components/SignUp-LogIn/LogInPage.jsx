@@ -5,11 +5,42 @@ import "./LogInPage.css";
 function LogInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate("/home");
+
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await fetch("https://localhost:7229/api/Auth/SignIn", { // replace with your API
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login Successful!", data);
+
+        // Save token or user data in localStorage or context if needed
+        // localStorage.setItem('token', data.token);
+
+        // Redirect to home page
+        navigate("/home");
+      } else {
+        setErrorMessage("Invalid email or password. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      setErrorMessage("Something went wrong. Please try again later.");
+    }
   };
 
   return (
@@ -34,6 +65,9 @@ function LogInPage() {
           Login
         </button>
       </form>
+
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+
       <p>
         New User?{" "}
         <Link style={{ color: "#505052" }} to="/signup">
@@ -43,4 +77,5 @@ function LogInPage() {
     </div>
   );
 }
+
 export default LogInPage;

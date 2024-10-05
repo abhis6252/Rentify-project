@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WishlistIcon from "./WishListPage/WishlistIcon";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { items, clouth, jewelry } from "./Data";
+import { items, clouth, jewelry, womenClouth } from "./Data";
 import { FaCartPlus } from "react-icons/fa";
 import userAccount from "../assets/images/account.png";
+import axios from "axios";
 
 const Navbar = ({ setData, cart }) => {
   const location = useLocation();
@@ -11,12 +12,58 @@ const Navbar = ({ setData, cart }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [showSubcategory, setShowSubcategory] = useState(false);
+  const [showWomenSubcategory, setShowWomenSubcategory] = useState(false);
+  const [allCategory, setAllCategory] = useState([]);
+  // Subcategories ke liye state
+  const [allProducts, setAllProducts] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  // Filtered subcategories ke liye state
+  const [filteredSubCategories, setFilteredSubCategories] = useState([]);
 
   const filterByCategory = (category) => {
-    // Check if category is for clothes or electronics
-    const element = items.filter((product) => product.category === category);
+    const element = clouth.filter((product) => product.category === category);
     setData(element);
   };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://localhost:7229/api/Category/GetAllCategory"
+  //       );
+  //       console.log(">>>>>>>>>>>>>>>>>>>response", response);
+  //       setAllCategory(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+  const getSubCategory = async (categoryId) => {
+    const subcategoryResponse = await axios.get(
+      `https://localhost:7229/api/SubCategory/${categoryId}`
+    );
+    setSubCategories(subcategoryResponse.data);
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Categories ke liye API call
+        const categoryResponse = await axios.get(
+          "https://localhost:7229/api/Category/GetAllCategory"
+        );
+        setAllCategory(categoryResponse.data);
+
+        // Subcategories ke liye API call
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const filterByPrice = (price) => {
     const element = items.filter((product) => product.price >= price);
@@ -42,38 +89,63 @@ const Navbar = ({ setData, cart }) => {
 
   const handleCategoryChange = (e) => {
     const category = e.target.value;
+    getSubCategory(category);
     setSelectedCategory(category);
+    setShowSubcategory(category === "men");
+    setShowWomenSubcategory(category === "women");
+
     if (
       category === "clothes" ||
       category === "laptops" ||
       category === "mobiles" ||
       category === "tablets"
     ) {
-      filterByCategory(category); // Use existing function for filtering
+      if (
+        category === "laptops" ||
+        category === "mobiles" ||
+        category === "tablets"
+      ) {
+        filterByElectronicsCategory(category);
+      } else {
+        filterByCategory(category);
+      }
     } else if (
       category === "jeans" ||
       category === "shirts" ||
       category === "t-shirts"
     ) {
-      handleClouthCategoryChange(category); // Handle clothes category separately
+      handleClouthCategoryChange(category);
     } else if (
       category === "necklaces" ||
       category === "earrings" ||
       category === "rings"
     ) {
-      handleJewelryCategoryChange(category); // Handle jewelry category separately
+      handleJewelryCategoryChange(category);
     }
   };
 
-  // New function to handle clothes category selection
   const handleClouthCategoryChange = (category) => {
-    const element = clouth.filter((product) => product.category === category);
+    const filteredItems = clouth.filter(
+      (product) => product.category === category
+    );
+    setData(filteredItems);
+  };
+
+  const handleJewelryCategoryChange = (category) => {
+    const element = jewelry.filter((product) => product.category === category);
     setData(element);
   };
 
-  // New function to handle jewelry category selection
-  const handleJewelryCategoryChange = (category) => {
-    const element = jewelry.filter((product) => product.category === category);
+  const handleWomenClouthCategoryChange = (category) => {
+    const element = womenClouth.filter(
+      (product) => product.category === category
+    );
+    setData(element);
+  };
+
+  // Electronics filter function
+  const filterByElectronicsCategory = (category) => {
+    const element = items.filter((product) => product.category === category);
     setData(element);
   };
 
@@ -95,7 +167,7 @@ const Navbar = ({ setData, cart }) => {
             />
           </form>
 
-          {/* Cart logo  */}
+          {/* Cart logo */}
           <Link to={"/cart"} className="cart">
             <button
               type="button"
@@ -128,24 +200,88 @@ const Navbar = ({ setData, cart }) => {
         {/* Filters only on the home page */}
         {location.pathname === "/product" && (
           <div style={{ cursor: "pointer" }} className="nav-bar-wrapper">
-            <div className="items">Filter by{" -> "}</div>
-            <div onClick={() => setData(items)} className="items">
-              All Products
-            </div>
+            <select
+              className="items"
+              style={{
+                padding: "10px",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+              onChange={handleCategoryChange}
+            >
+              <option value="">Select Category</option>
+              {allCategory.map((category) => {
+                return (
+                  <option value={category.categoryId}>
+                    {category.categoryName}
+                  </option>
+                );
+              })}
+            </select>
+            <div className="items">All Products</div>
+
+            {/* Subcategory Dropdown for Men */}
+            {showSubcategory && (
+              <select
+                className="items"
+                onChange={(e) => handleClouthCategoryChange(e.target.value)}
+                style={{
+                  backgroundColor: "rgb(254, 249, 217)",
+                  //color: "white",
+                  borderRadius: "4px",
+                  padding: "10px",
+                  border: "none",
+                  cursor: "pointer",
+                  //opacity: "0.5",
+                  fontWeight: "bold",
+                }}
+              >
+                <option value="">Men's Subcategory</option>
+                <option value="jeans">Jeans</option>
+                <option value="shirts">Shirts</option>
+                <option value="t-shirts">T-Shirts</option>
+                <option value="shoes">Shoes</option>
+              </select>
+            )}
+
+            {/* Subcategory Dropdown for Women */}
+            {showWomenSubcategory && (
+              <select
+                className="items"
+                onChange={(e) =>
+                  handleWomenClouthCategoryChange(e.target.value)
+                }
+                style={{
+                  backgroundColor: "rgb(254, 249, 217)",
+                  //color: "white",
+                  borderRadius: "4px",
+                  padding: "10px",
+                  border: "none",
+                  cursor: "pointer",
+                  //opacity: "0.5",
+                  fontWeight: "bold",
+                }}
+              >
+                <option value="">Women's Subcategory</option>
+                <option value="sarees">Sarees</option>
+                <option value="suit">Suit</option>
+                <option value="top-kurties">Top-Kurties</option>
+              </select>
+            )}
 
             {/* Clothes Dropdown */}
             <select
               value={selectedCategory}
-              onChange={handleCategoryChange} // Use handleCategoryChange for clothes
+              onChange={handleCategoryChange}
               className="items"
               style={{
-                backgroundColor: "#33321d",
-                color: "white",
+                backgroundColor: "rgb(254, 249, 217)",
+                // color: "white",
                 borderRadius: "4px",
                 padding: "10px",
                 border: "none",
                 cursor: "pointer",
-                opacity: "0.5",
+                //opacity: "0.5",
                 fontWeight: "bold",
               }}
             >
@@ -158,16 +294,16 @@ const Navbar = ({ setData, cart }) => {
             {/* Electronics Dropdown */}
             <select
               value={selectedCategory}
-              onChange={handleCategoryChange} // Reusing the existing function
+              onChange={handleCategoryChange}
               className="items"
               style={{
-                backgroundColor: "#33321d",
-                color: "white",
+                backgroundColor: "rgb(254, 249, 217)",
+                //color: "white",
                 borderRadius: "4px",
                 padding: "10px",
                 border: "none",
                 cursor: "pointer",
-                opacity: "0.5",
+                //opacity: "0.5",
                 fontWeight: "bold",
               }}
             >
@@ -180,16 +316,16 @@ const Navbar = ({ setData, cart }) => {
             {/* Jewelry Dropdown */}
             <select
               value={selectedCategory}
-              onChange={handleCategoryChange} // Use handleCategoryChange for jewelry
+              onChange={handleCategoryChange}
               className="items"
               style={{
-                backgroundColor: "#33321d",
-                color: "white",
+                backgroundColor: "rgb(254, 249, 217)",
+                //color: "white",
                 borderRadius: "4px",
                 padding: "10px",
                 border: "none",
                 cursor: "pointer",
-                opacity: "0.5",
+                //opacity: "0.5",
                 fontWeight: "bold",
               }}
             >
@@ -205,26 +341,20 @@ const Navbar = ({ setData, cart }) => {
               onChange={handlePriceChange}
               className="items"
               style={{
-                backgroundColor: "#33321d",
-                color: "white",
+                backgroundColor: "rgb(254, 249, 217)",
+                //color: "white",
                 borderRadius: "4px",
                 padding: "10px",
                 border: "none",
                 cursor: "pointer",
-                opacity: "0.5",
+                //opacity: "0.5",
                 fontWeight: "bold",
               }}
             >
-              <option
-                value=""
-                style={{ backgroundColor: "rgb(5, 41, 126)", color: "white" }}
-              >
-                Select Price
-              </option>
-              <option value="29999">{"₹ 30000"}</option>
-              <option value="49999">{"₹ 40000"}</option>
-              <option value="69999">{"₹ 69999"}</option>
-              <option value="89999">{"₹ 89999"}</option>
+              <option value="">Select Price</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+              <option value="1500">1500</option>
             </select>
           </div>
         )}
